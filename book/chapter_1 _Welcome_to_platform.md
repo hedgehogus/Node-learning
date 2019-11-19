@@ -20,14 +20,18 @@ and tons of code to maintain
 Some of these features will work correctly only when strict mode is enabled. Strict mode can be easily enabled by adding a "use strict"
 statement at the very beginning of your script.
 
-#### The let and const keywords
+### The let and const keywords
 
 if (false) {
+
  let x = "hello";
+ 
 }
+
 console.log(x); ----- This code will raise a ReferenceError: x is not defined 
 
 const x = 'This will never change';
+
 x = '...';  -------- This code will raise a TypeError: Assignment to constant variable
 
 Const does not indicate that the assigned value will be constant, but that the binding with the value is constant
@@ -35,12 +39,10 @@ Const does not indicate that the assigned value will be constant, but that the b
 *It is becoming best practice to use const when requiring a module in a script, so that the variable holding the module cannot be accidentally reassigned:*
 
 const path = require('path');
-// .. do stuff with the path module
-let path = './some/path'; // this will fail
 
 **If you want to create an immutable object, const is not enough, so you
 should use ES5's method Object.freeze()** or the deep-freeze module (https://www.npmjs.com/package/deep-freeze).
 
-#### The arrow function (36)
+### The arrow function (36)
 
 
