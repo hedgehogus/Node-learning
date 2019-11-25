@@ -92,7 +92,7 @@ const obj = { x, y,
    }
 };
 ```
-###Map and Set collections
+### Map and Set collections
 
 The **Map** prototype offers several handy methods, such as *set, get, has, and delete, and the size* attribute (notice how the latter differs from arrays where we use the attribute length). We can also iterate through all the entries using the for...of syntax.
 Every entry in the loop will be an array containing the key as first element and the value as second element.
@@ -106,10 +106,10 @@ Along with Map, ES2015 also introduces the Set prototype. This prototype allows 
 
  We have the methods add (instead of set), has, and delete and the property size
  
- ###WeakMap and WeakSet collections
+ ### WeakMap and WeakSet collections
  
  WeakMap is quite similar to Map in terms of interface; however, there are two main differences you should be aware of: **there is no way to iterate all over the entries, and it only allows having objects as keys**. While this might seem like a limitation, there is a good reason behind it. In fact, the distinctive feature of WeakMap is that it allows objects used as keys to be garbage collected when the only reference left is inside WeakMap. This is extremely useful when we are storing some metadata associated with an object that might get deleted during the regular lifetime of the application. 
  
  Similar to WeakMap, WeakSet is the weak version of Set: it exposes the same interface of Set but it only **allows storing objects and cannot be iterated.**
  
- ###Template literals (43)
+ ### Template literals (43)
