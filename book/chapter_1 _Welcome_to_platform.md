@@ -22,13 +22,17 @@ statement at the very beginning of your script.
 
 ### The let and const keywords
 
-`if (false) {
+```javascript
+if (false) {
  let x = "hello"; 
 }
-console.log(x);` ----- This code will raise a ReferenceError: x is not defined 
+console.log(x);```
+----- This code will raise a ReferenceError: x is not defined 
 
-`const x = 'This will never change';
-x = '...';`  -------- This code will raise a TypeError: Assignment to constant variable
+```javascript
+const x = 'This will never change';
+x = '...';```
+-------- This code will raise a TypeError: Assignment to constant variable
 
 Const does not indicate that the assigned value will be constant, but that the binding with the value is constant
 
