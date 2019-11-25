@@ -26,12 +26,14 @@ statement at the very beginning of your script.
 if (false) {
  let x = "hello"; 
 }
-console.log(x);```
+console.log(x);
+``` 
 ----- This code will raise a ReferenceError: x is not defined 
 
-```javascript
+`
 const x = 'This will never change';
-x = '...';```
+x = '...';
+`
 -------- This code will raise a TypeError: Assignment to constant variable
 
 Const does not indicate that the assigned value will be constant, but that the binding with the value is constant
