@@ -112,4 +112,17 @@ Along with Map, ES2015 also introduces the Set prototype. This prototype allows 
  
  Similar to WeakMap, WeakSet is the weak version of Set: it exposes the same interface of Set but it only **allows storing objects and cannot be iterated.**
  
- ### Template literals (43)
+ ### Template literals 
+```javascript
+ const text = `${name} was an Italian polymath`
+```
+### Other ES2015 features
+
++ Default function parameters
++ Rest parameters
++ Spread operator
++ Destructuring
++ new.target
++ Proxy 
++ Reflect
++ Symbols
