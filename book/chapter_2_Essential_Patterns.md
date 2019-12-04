@@ -5,7 +5,7 @@
 Another ideal construct for implementing callbacks is **closures**. With closures, we can in fact reference the environment in which a function was created; we can always maintain the context in which the asynchronous operation was requested, no matter when or where its
 callback is invoked.
 
-#### The continuation-passing style
+#### The continuation-passing style (CPS)
 
 In JavaScript, a **callback** is a function that is passed as an argument to another function and is invoked with the result when the operation completes. In functional programming, this way of propagating the result is called **continuation-passing style (CPS)**. 
 
@@ -32,5 +32,30 @@ Using synchronous I/O in Node.js is strongly discouraged in many circumstances; 
 
 Use blocking API only when they don't affect the ability of the application to serve concurrent requests.
 
-### Deferred execution (63)
+### Deferred execution 
+
+Node.js, this is possible using **process.nextTick()**, which defers the execution of a function until the next pass of the event loop. Its functioning is very simple; it takes a callback as an argument and pushes it to the top of the event queue, in front of any pending
+I/O event, and returns immediately. 
+
+```java script
+process.nextTick(() => callback(cache[filename]));
+```
+Another API for deferring the execution of code is **setImmediate()**. While their purposes are very similar, their semantics are quite different. Callbacks deferred with **process.nextTick()** run before any other I/O event is fired, while with **setImmediate()**, the execution is queued behind any I/O event that is already in the queue. 
+
+### Node.js callback conventions
++ **Callbacks come last**. When a function accepts a callback in input, this has to be passed as the last argument
++ **Error comes first**. Another important convention to take into account is that the error must always be of type Error. This means that simple strings or numbers should never be passed as error objects.
+```java script
+fs.readFile('foo.txt', 'utf8', (err, data) => {
+ if(err)
+ handleError(err);
+ else
+ processData(data);
+});
+```
++ **Propagating errors**.  Proper error propagation is done by simply passing the error to the next callback in the chain. Also notice that when we are propagating an error we use the return statement. We do so to exit from the function as soon as the callback function is invoked and to avoid executing the next lines.
++ **Uncaught exceptions**. Wrapping the invocation of readJSONThrows() with a **try...catch block** will not work, because the stack in which the block operates is different from the one in which our callback is invoked. It's important to understand that an uncaught exception leaves the application in a state that is not guaranteed to be consistent, which can lead to unforeseeable problems. That's why it is always advised, especially in production, to exit from the application after an uncaught exception is received anyway.
+
+### The module system and its patterns (68)
+
 
