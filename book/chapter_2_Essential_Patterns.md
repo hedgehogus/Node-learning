@@ -57,5 +57,28 @@ fs.readFile('foo.txt', 'utf8', (err, data) => {
 + **Uncaught exceptions**. Wrapping the invocation of readJSONThrows() with a **try...catch block** will not work, because the stack in which the block operates is different from the one in which our callback is invoked. It's important to understand that an uncaught exception leaves the application in a state that is not guaranteed to be consistent, which can lead to unforeseeable problems. That's why it is always advised, especially in production, to exit from the application after an uncaught exception is received anyway.
 
 ### The module system and its patterns (68)
+Modules are the bricks for structuring non-trivial applications, but also the main
+mechanism to enforce information hiding by keeping private all the functions and variables
+that are not explicitly marked to be exported. 
 
+#### The revealing module pattern
 
+One of the major problems with JavaScript is the absence of namespacing. Programs that
+run in the global scope polluting it with data that comes from both internal application code
+and dependencies. A popular technique to solve this problem is called the **revealing module
+pattern** , and it looks like the following:
+```java script
+ const module = (() => {
+ const privateFoo = () => {...};
+ const privateBar = [];
+ const exported = {
+ publicFoo: () => {...},
+ publicBar: () => {...}
+ };
+ return exported;
+})();
+console.log(module);
+```
+This pattern leverages a self-invoking function to create a private scope, exporting only the parts that are meant to be public
+
+### Node.js modules explained (69)
